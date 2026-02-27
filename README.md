@@ -1,1 +1,1 @@
-# Artifical_Inteligence_lesson
+# Lessons_About_Data
