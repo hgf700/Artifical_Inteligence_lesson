@@ -46,3 +46,38 @@ preprocess = ColumnTransformer(
     ],
     remainder="drop"
 )
+
+#   regresja opis zmiennych
+LinearRegression = prosta linia bez regularyzacji.
+Ridge = regularyzacja L2 dodaje karę za duże współczynniki w funkcji straty  współczynniki mniejsze, mniej przeuczenia.
+Lasso = regularyzacja L1 część współczynników jest dokładnie zerowa, czyli wybiera tylko najważniejsze cechy, redukcja cech do najważniejszych.
+
+#   optymalizatory dla regresji
+mse = mean_squared_error(y_test, preds)
+mae = mean_absolute_error(y_test, preds)
+r2 = r2_score(y_test, preds)
+
+#   klasyfikacja StratifiedKFold dzieli dane na 5 foldów zachowując przy tym proporcje w danych shuffle losowo miesza dane
+#    przed podziałem GridSearchCV przyjmuje pipe zawierający model i preprocess zdefiniowane parametry scoring model 
+#   wybiera najlepsze parametry korzystając z F1 = harmonia między precision i recall a n_jobs=-1 korzysta ze wszystkich 
+#   rdzeni procesora
+
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=cfg.random_state)
+search = GridSearchCV(
+    pipe,
+    param_grid=param_grid,
+    scoring="f1",
+    cv=cv,
+    n_jobs=-1
+)
+
+#   klasyfikacja wyniki i macierz pomylek
+
+acc = accuracy_score(y_test, y_pred)
+prec = precision_score(y_test, y_pred, zero_division=0)
+rec = recall_score(y_test, y_pred, zero_division=0)
+f1 = f1_score(y_test, y_pred, zero_division=0)
+
+cm = confusion_matrix(y_test, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+disp.plot()
