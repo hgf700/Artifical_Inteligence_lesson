@@ -1,0 +1,48 @@
+#    zmienna x nie mzoe miec w danych do uczenia docelowej y i odwrotnie
+
+df = df.dropna(subset=[cfg.target])
+X = df.drop(columns=[cfg.target])
+y = df[cfg.target]
+
+#   dla klasyfikacji jesli cecha docelowa jest stringiem mozna map() zmienic ja na binarna liczbe 0/1
+
+if cfg.task_type == "classification" and y.dtype == "object":
+    y = y.astype(str).str.strip().str.lower()
+    uniq = sorted(y.unique())
+    if len(uniq) == 2:
+        mapping = {uniq[0]: 0, uniq[1]: 1}
+        y = y.map(mapping)
+
+#   stratify służy do zachowania proporcji klas, aby uniknąć sytuacji, w której po podziale jedna z klas 
+#   znalazłaby się tylko w jednym zbiorze lub miałaby bardzo nierówną reprezentację.”
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=cfg.test_size,
+    random_state=cfg.random_state,
+    stratify=stratify
+)
+
+#   Wypełnianie brakujących danych dla kolumn liczbowych medianą oraz standaryzacja danych 
+#   (np. zamiana wartości takich jak 5000 na liczby bliższe 0, np. 1.5). Dla kolumn tekstowych brakujące wartości są 
+#   uzupełniane najczęściej występującą wartością, a następnie zamieniane na reprezentację liczbową przy użyciu kodowania one-hot.(zamiana
+#   np red i blue na 1 i 2) Nieznane kategorie są ignorowane, a pozostałe kolumny, które nie zostały uwzględnione w transformacji, 
+#   są usuwane
+
+numeric_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
+
+categorical_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+preprocess = ColumnTransformer(
+    transformers=[
+        ("num", numeric_transformer, num_features),
+        ("cat", categorical_transformer, cat_features)
+    ],
+    remainder="drop"
+)
