@@ -1,1 +1,1 @@
-pip install pandas notebook scikit-learn numpy pypandoc xgboost
+pip install pandas notebook scikit-learn numpy xgboost
