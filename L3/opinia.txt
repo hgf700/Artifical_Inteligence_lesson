@@ -1,0 +1,8 @@
+#   dobrze pamietalem ze unsupervised kazda cecha to kolejny wymiar
+#   i celem algorytmu jest z tych wymiarow znalezc podobienstwa i za pomoca pca
+#   wyswietlic wyniki na 2d obrazie
+
+#   StandardScaler dla lczib od 0 do 1 zamienia je wzorem (x-data.mean())/data.std()
+#   na danych okolo -1.7 do 0 i 0 do 1.7 wartosc 0 bazowa daje bliskei -1.7 wartosc 0.5 daje bliskei 0 a 
+#   wartosc 0.9 daje blisko 1.7
+
