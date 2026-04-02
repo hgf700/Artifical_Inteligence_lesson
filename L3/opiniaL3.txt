@@ -6,3 +6,28 @@
 #   na danych okolo -1.7 do 0 i 0 do 1.7 wartosc 0 bazowa daje bliskei -1.7 wartosc 0.5 daje bliskei 0 a 
 #   wartosc 0.9 daje blisko 1.7
 
+#   metoda lokcia
+#   wybierasz takie k, przy którym spadek inertia zaczyna wyraźnie zwalniać.
+#   np 
+k: 1 : inertia : 570779.9999999998
+k: 2 : inertia : 522877.15051446384
+k: 3 : inertia : 492507.44543146365
+k: 4 : inertia : 479155.4956253755
+k: 5 : inertia : 463854.04089749226
+k: 6 : inertia : 450898.4117880074
+k: 7 : inertia : 441774.7647452686
+k: 8 : inertia : 425235.59341939946
+k: 9 : inertia : 413057.39124767133
+k: 10 : inertia : 402170.29945680045
+#   przy 3 juz zaczyna zwalniac wiec wybieram k=3
+
+#   Silhouette większe = lepiej porównujesz jakość podziału
+#   ARI: 1 → identyczny podział 0 → losowo podobny <0 → bardzo różny
+
+#   opinia o wynikach
+#   Spośród metod hierarchicznych najwyższe wartości współczynnika silhouette uzyskano dla metod 
+#    single oraz complete, co wskazuje na dobrą separację klastrów.
+#   Jednak bardzo niskie wartości ARI pokazują, że podziały te znacząco różnią się od wyników 
+#   uzyskanych metodą K-Means.
+#   Z kolei metoda Ward osiągnęła najwyższą zgodność z K-Means (ARI = 0.501), co jest zgodne z 
+#   oczekiwaniami teoretycznymi, ponieważ obie metody minimalizują wariancję wewnątrz klastrów.
