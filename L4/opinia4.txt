@@ -1,0 +1,7 @@
+f = lambda x: x**2
+#   to znaczy
+#   def f(x):
+#       return x**2
+
+# theta = wektor parametrów modelu ktore model aktualizuje
+
