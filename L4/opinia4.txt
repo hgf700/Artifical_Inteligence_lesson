@@ -5,3 +5,10 @@ f = lambda x: x**2
 
 # theta = wektor parametrów modelu ktore model aktualizuje
 
+# Implementacja optymalizacji gradientowej grad_f to jest (pri) np x^2 = 2x
+# lambda znaczy
+f = lambda x: x**2 + 3*x+2
+grad_f = lambda x: 2*x + 3
+
+# regresja w pytorch jest bardziej skomplikowana niz tensorflow ale wieksza modyfikowalnosc
+
