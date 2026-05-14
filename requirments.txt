@@ -1,1 +1,1 @@
-pip install pandas notebook scikit-learn numpy xgboost plotly tensorflow torch torchvision nltk spacy transformers sentencepiece gymnasium 
+pip install pandas notebook scikit-learn numpy xgboost plotly tensorflow torch torchvision torchmetrics nltk spacy transformers sentencepiece gymnasium 

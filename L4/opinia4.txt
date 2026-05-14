@@ -3,12 +3,17 @@ f = lambda x: x**2
 #   def f(x):
 #       return x**2
 
-# theta = wektor parametrów modelu ktore model aktualizuje
+#   theta = wektor parametrów modelu ktore model aktualizuje
 
 # Implementacja optymalizacji gradientowej grad_f to jest (pri) np x^2 = 2x
-# lambda znaczy
+# lambda znaczy to samo co => definiowanie funkcji
 f = lambda x: x**2 + 3*x+2
 grad_f = lambda x: 2*x + 3
 
+
 # regresja w pytorch jest bardziej skomplikowana niz tensorflow ale wieksza modyfikowalnosc
 
+# do kodu gradient_descent() 
+# bazowy obrazek to jest parabola bo X^2+Y^2
+# i theta mimo ze z kazda iteracja z kolejnym razem jest mniejsza i powinna isc do dolu to wizualnie 
+# idzie do gury bo to idzie w dol wzgedem tej paraboli
