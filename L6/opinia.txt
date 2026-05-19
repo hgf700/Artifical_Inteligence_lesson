@@ -1,0 +1,32 @@
+gym.make("", render_mode="")
+#   "human": The environment is continuously rendered in the current display
+#   “rgb_array”: Return a single frame representing the current state of the environment. 
+# A frame is a np.ndarray with shape (x, y, 3) representing RGB
+#   “ansi”: Return a strings (str) or StringIO.StringIO containing a terminal-style 
+# text representation for each time step.
+#   “rgb_array_list” and “ansi_list”: List based version of render modes are possible
+is_slippery
+# jesli true Ruchy są losowe („ślizganie”). Gdy agent chce iść np. w lewo: może pójść w lewo, albo lekko skręcić,
+
+n_states = env.observation_space.n
+#plansza ale w formacie tablicy dwuwymiarowej
+
+n_actions = env.action_space.n
+#mozliwe ruchy 
+
+#Q learning
+Q[state, action] + alpha * (reward + gamma * np.max(Q[next_state]) - Q[state, action])
+# Q[state, action] - Aktualna wiedza: jak dobra jest akcja action w stanie state.
+# reward - Natychmiastowa nagroda. Np.: 1 za wygraną, 0 za zwykły ruch.
+#np.max(Q[next_state]) - Najlepsza możliwa przyszła nagroda.
+# gamma - Discount factor. Określa: jak ważna jest przyszłość. 
+# gamma = 0.99 przyszłe nagrody są prawie tak ważne jak obecne.
+# alpha Learning rate. Określa: jak szybko agent się uczy.
+# tzn stara_wiedza + nauka * (nowa_lepsza_wiedza - stara_wiedza)
+
+#agent nie zapisuje histori ruchow tylko ocenia w tej samej aktualnej grze (epizodzie) i przez wiele 
+# epizodów zbiera statystyki
+# jesli nie obniza wage tej sciezki 
+# jesli tak wyzsze punkty daje
+# agent w prawo dostal punkty to zapisuje to i robi eksploracje
+Q[5, RIGHT] = Q[5, RIGHT] + ...
