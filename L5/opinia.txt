@@ -1,0 +1,6 @@
+TfidfVectorizer
+# wazone cechy tekstu ilosc powtorzen i ilosc w calym tekscie wplywa na wage
+
+MultinomialNB (naive bayes używany głównie do danych dyskretnych klasyfikacji tekstu, zliczeń słów, TF-IDF.)
+# zaklada ze jeśli znamy klasę, to jedna cecha nie wpływa na drugą. dziala podobnie do nienadzorowanego
+
