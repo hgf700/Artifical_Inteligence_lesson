@@ -1,9 +1,6 @@
 pd_speech_features.csv
 https://www.kaggle.com/datasets/jaaan123/pd-speech-features-csv
 
-pd_speech_features.csv
-https://www.kaggle.com/datasets/jaaan123/pd-speech-features-csv
-
 films
 https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews?resource=download
 
