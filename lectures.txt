@@ -1,0 +1,195 @@
+
+    #wyklad 1        Wprowadzenie do uczenia maszynowego
+
+#Klasyfikacja polega na znajdowaniu odwzorowania danych w zbior predefiniowanych klas.
+
+    #wyklad 2        Uczenie nadzorowane: regresja liniowa Uczenie nadzorowane: klasyfikacja binarna Uczenie 
+                    nadzorowane: klasyfikacja wieloklasowa
+
+#klasyfikacja: predykcja wartosci atrybutu kategorycznego (predykcjaklasy)
+#regresja: modelowanie funkcji ciaglych
+
+#Ocena jakosci klasyfikacji metoda krzywych ROC. ze wspolczynnikami czulosc i specyficznosc pozwalaja˛weryfikowac 
+#nie tylko fakty lnienia bledow podczas klasyfikacji, ale takze rozrozniac rodzaje tych bledow (I czy II rodzaju).
+#korzysta z true positive, true negative...
+#Czulosc (ang. sensitivity) okreslimy prawdopodobienstwo, ze chora˛osobe test zakwalifil do grupy chorych.(true positives).
+#Specyficznosc˛(ang. specificity) prawdopodobienstwo, chora osobe test zakwalifikuje jako osobe˛zdrowa˛ (true negatives).
+
+#Drzewa decyzyjne  latwe do interpretacji moga˛ przeuczac bez przycinania (pruning)
+#Reguly klasyfikacyjne jasne i logiczne zasady moga˛byc dlugie i z lozone dla duzych zbiorow danych
+#SVM wysoka skutecznosc, zwlaszcza w wysokim wymiarze mniejsza interpretowalnosc modelu
+#Precision, Recall, F1-score liczone osobno dla kazdej klasy mozliwe u srednianie: macro — kazda klasa ma taki sam wplyw
+#weighted — klasy wazone liczba˛probek Macierz pomylek pokazuje bledne i poprawne klasyfikacje dla kazdej klasy
+
+    #wyklad 3        Drzewa decyzyjne i algorytmy ensemble  Metody optymalizacji: spadek gradientu i stochastyczny 
+                    spadek gradientu. Uczenie nienadzorowane: klasteryzacja k-srednich
+
+#   algorytmy ensemble lacza kilka modelow
+#Kazde drzewo jest trenowane na losowym podzbiorze danych (bootstrap). Model ﬁnalny dokonuje przewidywan przez 
+#glosowanie wiekszosciowe. Galezie wskazuja czy warunek jest spelniony (lewa galaz) lub nie (prawa galaz).
+
+#   Gradient Boosting
+#minimalizuje funkcje˛ straty, dodajac iteracyjnie nowe modele:
+#Spadek gradientu (Gradient Descent) to jedna z najpopularniejszych metod optymalizacji funkcji kosztu.
+#Krok uczenia kontroluje szybkosc aktualizacji.
+#Stochastyczny Spadek Gradientu wykonuje kroki z wie˛kszym szumem, co moze pomoc w unikaniu lokalnych minimow. 
+#i przyspiesza obliczenia przy duzych zbiorach danych
+#Dlatego dzielimy dane na mniejsze porcje: batche. niewielka podgrupa przykladow ze zbioru treningowego, np. 32, 64 ...
+
+#   Epoka (epoch)
+#to jedno pelne przejscie po calym zbiorze danych treningowych.
+#Liczba epok okresla, ile razy model zobaczy kazda˛ probke˛ w danych treningowych.
+
+
+    #wyklad 4       Uczenie glebokie: sieci neuronowe i perceptrony. Konwolucyjne sieci neuronowe (CNN)
+                    Rekurencyjne sieci neuronowe (RNN)
+    
+#   Perceptron 
+#to najprostszy model sztucznego neuronu. Wyjscie obliczane jest za pomoca˛ funkcji aktywacji, np.: Reguly
+#Celem funkcji aktywacji jest wprowadzenie nieliniowosci do modelu, co pozwala na rozwiazywanie bardziej zlozonych
+#Sieci neuronowe to zbiory perceptronow polaczonych w struktury warstwowe.
+
+#   Backpropagation 
+#to algorytm wykorzystywany do uczenia sieci neuronowych.
+#Polega na propagacji bledu od warstwy wyjsciowej do warstw ukrytych, aby dostosowac wagi w sieci.
+#Proces sklada sie˛ z dwoch glownych krokow: Przeplyw do przodu (forward pass),
+#Obliczenie bledu i propagacja do tylu (backward pass).
+
+#Blad na wyjsciu dla kazdego neuronu obliczany jest za pomoca˛ funkcji kosztu, np. bledu sredniokwadratowego:
+#Blad jest propagowany do tylu, aby zaktualizowac wagi w sieci. Dla kazdej wagi obliczany jest gradient bledu:
+#Na podstawie tego gradientu wagi sa˛ aktualizowane za pomoca algorytmu spadku gradientu
+#Blad w warstwach ukrytych obliczany jest na podstawie bledu w warstwie wyjsciowej:
+
+#   Sieci glebokie
+#to sieci neuronowe, ktore posiadaja˛ wiele warstw ukrytych, pozwalaja˛cych na modelowanie
+#bardziej zlozonych funkcji. W odroznieniu od tradycyjnych sieci z jedna˛ warstwa˛ ukryta, sieci 
+#glebokie moga˛ uczyc sie˛ reprezentacji na roznych poziomach abstrakcji.
+#Lepsza reprezentacja danych: Wiecej warstw pozwala na lepsza˛hierarchie˛ reprezentacji.
+
+#   Konwolucyjne sieci neuronowe (CNN)
+#to typ sieci neuronowych zaprojektowany z mysla˛ o analizie danych o strukturze siatki, takich jak obrazy.
+#Skladaja˛ sie˛ z warstw konwolucyjnych, poolingowych oraz w pelni polaczonych (fully connected).
+#Warstwy konwolucyjne: Ekstrakcja cech z wejsciowych obrazow. Warstwy poolingowe: Redukcja wymiarow, zachowanie
+#najistotniejszych cech. Warstwy w pelni polaczone (FC): Podejmowanie decyzji na podstawie wyodrebnionych cech.
+#Celem CNN jest nauka reprezentacji danych w formie cech, ktore sa wysoce abstrakcyjne.
+
+#Operacja konwolucji polega na przesuwaniu ﬁltra (jadra) po obrazie wejsciowym i wykonywaniu iloczynu skalarnych
+#punktow obrazu z odpowiadajacymi elementami ﬁltra.
+
+#   Filtr konwolucyjny (jadro)
+#jest mala˛ macierza, ktorej elementy sa˛ uczone w trakcie procesu uczenia.
+
+#   Warstwa poolingowa
+#jest stosowana po warstwie konwolucyjnej w celu redukcji wymiarow obrazu. 
+#W przypadku max pooling wybieramy najwieksza˛ wartosc w obrebie okna (np. 2x2).
+
+#   U-Net
+#to siec neuronowa zaprojektowana glownie do segmentacji obrazu, w ktorej celem jest przypisanie kazdemu pikselowi
+#klasy na podstawie obrazu wejsciowego. Architektura sklada sie˛ z dwoch glownych czesci:
+#Enkoder (downsampling): Redukuje wymiar danych, wyodrebniajac najwazniejsze cechy.
+#Dekoder (upsampling): Zwieksza wymiar danych, rekonstruujac obraz do oryginalnej rozdzielczosci.
+
+#Charakterystyczna˛ cecha˛ U-Net sa˛ polaczenia skip, ktore lacza odpowiadajace sobie warstwy enkodera i dekodera,
+#pozwalajac na zachowanie lokalnych informacji. Polaczenia skip przekazuja˛ cechy pomiedzy warstwami o tej samej
+#rozdzielczosci w enkoderze i dekoderze, co umozliwia lepsze lokalne odwzorowanie
+
+#   Rekurencyjne sieci neuronowe (RNN)
+#sa˛ uzywane w zadaniach, ktore wymagaja modelowania zaleznosci czasowych, takich jak analiza sekwencyjnych danych
+# (np. tekst, mowa, sygnaly).
+
+#RNN rozni˛ sie˛ od klasycznych sieci neuronowych, poniewaz zawieraja polaczenia zwrotne (feedback connections),
+#ktore pozwalaja˛ im przechowywac informacje o przeszlych stanach. Funkcja aktywacji f jest czesto funkcja nieliniowa
+#taka˛ jak tanh lub ReLU Stan ukryty jest zalezny od poprzedniego stanu oraz obecnego wejscia .
+
+#W przypadku dlugich sekwencji RNN moga miec problem z nauka˛ zaleznosci z odleglych czasow, co nazywane jest 
+#zanikajacym gradientem. Dla dlugich sekwencji gradienty moga rosnac wykladniczo, prowadzac do eksplodujacego gradientu.
+
+#   LSTM (Long Short-Term Memory)
+#jest rozszerzeniem klasycznego RNN, ktore jest zaprojektowane w celu rozwia˛zania problemow zanikajacego gradientu
+#i eksplodujacego gradientu. LSTM wprowadza komorki pamieci, ktore pozwalaja˛ sieci "zapamietac" informacje na 
+#dluzszy okres czasu. Matematyka LSTM opiera sie˛ na czterech glownych bramkach:
+#Brama zapomnienia: Decyduje, ktore informacje z komorki pamieci nalezy zapomniec.
+#Brama wejsciowa: Decyduje, ktore nowe informacje nalezy zapisac w komorce pamieci.
+#Brama wyjsciowa: Decyduje, ktore informacje nalezy przekazac dalej do nastepnej komorki.
+#Komorka pamieci: Przechowuje dlugoterminowa˛ pamiec.
+
+#   RU (Gated Recurrent Unit) 
+#to uproszczona wersja LSTM, ktora laczy bramke˛ zapomnienia i bramke˛ wejsciowa˛ w jedna˛ bramke˛ aktualizacji. 
+#W porownaniu do LSTM, GRU zawiera mniej parametrow, co moze prowadzic do szybszego treningu.
+
+#   Mechanizm uwagi (Attention)
+#pozwala modelom RNN skupic sie˛ na istotnych czesciach wejsciowej sekwencji podczas przetwarzania. Zamiast traktowac
+#cala sekwencje˛ rownorzednie, uwaga pozwala modelowi przypisac rozne wagi roznym czesciom wejscia.
+
+    #wyklad 5        Autoenkodery i Redukcja Wymiarowosci. Uczenie zespolowe (ensemble learning). Uczenie ze 
+                    wzmocnieniem
+
+#Redukcja wymiarowosci to kluczowy proces w uczeniu maszynowym, pozwalajacy na wyodrebnienie istotnych cech i
+#zmniejszenie liczby wymiarow. 
+
+#PCA ma na celu znalezienie kierunkow zmaksymalizowac wariancje lub zminimalizowac blad rekonstrukcji:
+
+#   Autoenkodery
+#sa˛ rodzajem sieci neuronowych, zaprojektowanym w celu uczenia reprezentacji danych w sposob nienadzorowany.
+#ktorej celem jest uczenie sie˛ kodowania danych do wymiaru ukrytego i dekodowania w celu odzyskania oryginalnego wejscia.
+#Sklada sie˛ z dwoch glownych czesci: Enkoder (encoder) x → z Dekoder (decoder) z → ˆx
+
+#Autoenkoder moze sluzyc do redukcji wymiarowosci Celem jest minimalizacja bledu rekonstrukcji miedzy x a xˆ. 
+#Powszechnie stosowana jest np. MSE (Mean Squared Error)
+
+#   Warianty autoenkoderow
+#Denoising Autoencoder (DAE): trenowany na zaszumionych danych, aby nauczyc sie˛ rekonstrukcji oryginalnych, 
+#nieznieksztal conych danych.
+#Sparse Autoencoder: wprowadza regularizacje aby wymusic rzadkosc (sparseness) aktywacji w warstwie ukrytej.
+#tylko niewielka liczba neuronów w warstwie ukrytej jest aktywna jednocześnie większość aktywacji jest bliska zeru
+#Variational Autoencoder (VAE): probabilistyczna wersja autoenkodera, uczaca rozkladu danych zamiast deterministycznej
+#rekonstrukcji.
+#Convolutional Autoencoder (CAE): uzywa konwolucji (dla obrazow) w enkoderze i dekoderze, skuteczne do kompresji 
+#obrazow.
+
+#Zwiekszenie dokladnosci modelu: Polaczenie wynikow wielu modeli zmniejsza blad generalizacji.
+
+#   Rodzaje uczenia zespolowego
+#Bagging (Bootstrap Aggregating): Tworzenie wielu modeli naroznych podzbiorach danych Kazdy model jest uczony niezaleznie.
+#na podstawie roznych probek losowych (bootstrap). Wyniki modeli sa usredniane (regresja) lub laczone przez
+#glosowanie (klasyﬁkacja).
+#Random Forest: Specjalna forma baggingu, gdzie kazdy model bazowy to drzewo decyzyjne.
+#Boosting: Tworzenie modeli sekwencyjnie, gdzie kazdy kolejny model koryguje bledy poprzednika.
+#np. AdaBoost, przydzielaja˛ wieksze wagi dla trudnych przykladow.
+#Stacking: Modele bazowe ucza sie niezaleznie, a ich wyniki sa laczone za pomoca modelu nadrzednego (meta-modelu).
+
+#Uczenie ze wzmocnieniem (Reinforcement Learning, RL) to podejscie w uczeniu maszynowym, w ktorym agent uczy sie˛ 
+#optymalnego dzialania w srodowisku poprzez interakcje˛ i maksymalizacje dlugoterminowej nagrody.
+
+#Q-Learning to algorytm oﬀ-policy, ktory uczy funkcji wartosci akcji (Q) bez potrzeby znajomosci modelu srodowiska.
+#Algorytmy oparte na polityce ucza bezposrednio optymalnej polityki Celem jest maksymalizacja oczekiwanej sumy nagrod:
+    
+    #wyklad 6        Uczenie maszynowe w przetwarzaniu języka naturalnego (NLP)
+
+#Przetwarzanie języka naturalnego to zbiór metod, które pozwalają komputerom analizować, reprezentować, interpretować
+#i generować język ludzi. Język jest dyskretny: słowa, znaki, tokeny. 
+
+#Nie istnieje uniwersalne „czyszczenie tekstu”. Usuwanie wielkości liter, interpunkcji lub emotikon może zniszczyć
+#sygnał przydatny w zadaniu.
+
+#   N-gramy
+#Unigramy: pojedyncze tokeny. Bigramy: pary sąsiednich tokenów. Trigramy: krótkie frazy.
+
+#Baseline jest punktem odniesienia dla droższych modeli neuronowych. np TF-IDF -> logistic/SVM 
+
+#pipeline jest dobry do uzywania minimalizuje bledy
+
+#   Attention
+#Zamiast jednego wektora kontekstu jest ważoną sumę stanów. attention można wizualizować jako „skupienie” modelu.
+#To fundament transformerów.
+
+#Fine-tuning Aktualizujemy parametry modelu na danych zadania.
+#Prompting Sterujemy modelem przez instrukcję i przykłady w kontekście.
+#PEFT Uczymy niewielkie moduły, np. adaptery lub LoRA.
+
+#RAG: generacja wsparta wyszukiwaniem
+
+#NER: rozpoznawanie nazw własnych Popularny format: BIO/BILOU. Modele: CRF, BiLSTM-CRF, BERT + klasyfikator tokenów
+
+#biblioteka do NLP - spaCy
+#perplexity mierzy Niepewność modelu językowego
